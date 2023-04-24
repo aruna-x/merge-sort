@@ -1,27 +1,43 @@
 // merge 2 sorted arrays, only ever have to compare the first two elements of each 
 // can implement merge recursively as well :)
 function merge(a1, a2) {
-  const res = [];
-  let p1 = 0, p2 = 0;
 
-  while (a1[p1] && a2[p2]) {
-    if (a1[p1] < a2[p2]) {
-      res.push(a1[p1]);
-      p1++;
-    }
-    else if (a1[p1] >= a2[p2]) {
-      res.push(a2[p2]);
-      p2++;
-    }
+  // RECURSIVE
+  switch (true) {
+    case (a1.length === 0):
+      return a2;
+    case (a2.length === 0):
+      return a1;
+    case (a1[0] < a2[0]):
+      return [a1[0], ...merge(a1.slice(1),a2)];
+    case (a1[0] >= a2[0]):
+      return [a2[0], ...merge(a2.slice(1),a1)];
+
   }
 
-  if (a1[p1]) {
-    return [...res, ...a1.slice(p1)]
-  }
-  else if (a2[p2]) {
-    return [...res, ...a2.slice(p2)]
-  }
-  return res;
+  // ITERATIVE
+
+  // const res = [];
+  // let p1 = 0, p2 = 0;
+
+  // while (a1[p1] && a2[p2]) {
+  //   if (a1[p1] < a2[p2]) {
+  //     res.push(a1[p1]);
+  //     p1++;
+  //   }
+  //   else if (a1[p1] >= a2[p2]) {
+  //     res.push(a2[p2]);
+  //     p2++;
+  //   }
+  // }
+
+  // if (a1[p1]) {
+  //   return [...res, ...a1.slice(p1)]
+  // }
+  // else if (a2[p2]) {
+  //   return [...res, ...a2.slice(p2)]
+  // }
+  // return res;
 }
 
 function mergeSort(arr) {
